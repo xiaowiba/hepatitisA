@@ -1,0 +1,28 @@
+{
+  "name": "checkbix",
+  "version": "1.1.3",
+  "homepage": "https://urre.github.io/checkbix/",
+  "authors": [
+    "Urban Sanden <hej@urre.me>"
+  ],
+  "description": "A simple checkbox plugin written in vanilla javascript",
+  "main": [
+    "dist/css/checkbix.css",
+    "dist/js/checkbix.js"
+  ],
+  "moduleType": [
+    "globals",
+    "node"
+  ],
+  "keywords": [
+    "floating",
+    "label",
+    "label",
+    "form",
+    "input"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "node_modules"
+  ]
+}

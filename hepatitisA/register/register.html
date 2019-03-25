@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+    <meta http-equiv="Expires" content="0" />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Cache-control" content="no-cache" />
+    <meta http-equiv="Cache" content="no-cache" />
+
+    <title id="title"></title>
+
+    <!--写字板-start-->
+    <link rel="stylesheet" href="../../resources/plugin/Tablet/css/colpick.css" />
+    <!--写字板-end-->
+
+    <!--mui-start-->
+    <link rel="stylesheet" href="../../resources/plugin/mui/css/mui.min.css" />
+    <link rel="stylesheet" href="../../resources/plugin/mui/css/mui.picker.all.css" />
+    <link rel="stylesheet" href="../../resources/plugin/mui/css/mui.dtpicker.css" />
+    <link rel="stylesheet" href="../../resources/plugin/mui/css/icons-extra.css" />
+    <link rel="stylesheet" href="../../resources/plugin/mui/css/app.css" />
+    <!--mui-end-->
+
+    <link rel="stylesheet" href="resources/css/register.css" />
+
+    <!--angular-start-->
+    <!--<script src="/css/ionic/ionic.bundle.min.js"></script>-->
+    <script src="../../resources/css/ionic/ionic.bundle.js"></script>
+    <!--<script src="/js/plugin/angularJs/angular.min.js"></script>-->
+    <!--<script src="/js/plugin/angularJs/angular-sanitize.min.js"></script>-->
+    <!--<script src="/js/plugin/angularJs/angular-messages.js"></script>-->
+    <!--<script src="/js/plugin/angular-resource/angular-resource.min.js"></script>-->
+    <!--<script src="/js/plugin/angular-ui-router/angular-ui-router.min.js"></script>-->
+    <!--<script src="/js/plugin/angular-route/angular-route.min.js"></script>-->
+    <!--angular-end-->
+
+    <script src="../../resources/plugin/jquery-2.2.4.min.js"></script>
+    <script src="../../resources/js/common.js"></script>
+    <script src="../../resources/plugin/jweixin-1.2.0.js"></script>
+
+    <!--mui-start-->
+    <script src="../../resources/plugin/mui/js/mui.js"></script>
+    <script src="../../resources/plugin/mui/js/mui.picker.all.js"></script>
+    <script src="../../resources/plugin/mui/js/mui.zoom.js"></script>
+    <script src="../../resources/plugin/mui/js/mui.previewimage.js"></script>
+    <script src="../../resources/plugin/mui/js/mui.showLoading.js"></script>
+    <!--mui-end-->
+
+    <!--写字板-start-->
+    <script src="../../resources/plugin/Tablet/dist/Tablet-1.0.min.js"></script>
+    <!--写字板-end-->
+
+    <script src="../../resources/plugin/ripple/ripple.min.js"></script>
+    <script src="../../resources/plugin/exif-js/exif.js"></script>
+    <script src="../../resources/plugin/vconsole.min.js"></script>
+
+</head>
+
+<body ng-app="haApp"
+      ng-controller="registerController">
+
+<div class="HA-main" id="main">
+
+    <div id="HA-register"
+         class="HA-container"
+         ng-show="register">
+
+        <div class="HA-navigation">
+
+            <div class="HA-navigation-item">输入个人信息</div>
+            <div class="HA-navigation-arrow">→</div>
+            <div class="HA-navigation-item">签署知情同意书</div>
+            <div class="HA-navigation-arrow">→</div>
+            <div class="HA-navigation-item">输入验证码</div>
+            <div class="HA-navigation-arrow">→</div>
+            <div class="HA-navigation-item">完成注册</div>
+
+        </div>
+
+        <div class="HA-content">
+
+            <div class="HA-title">
+                <span>完善个人信息</span>
+            </div>
+
+            <div class="mui-input-row">
+                <input type="text"
+                       placeholder="请输入您的姓名"
+                       class="HA-input"
+                       ng-model="Name" />
+            </div>
+
+            <div class="mui-input-row">
+                <input type="number"
+                       placeholder="请输入您的手机号"
+                       class="HA-input"
+                       ng-model="PhoneNo"/>
+            </div>
+
+            <div class="mui-input-row">
+                <input type="text"
+                       placeholder="请输入您的身份证号"
+                       class="HA-input HA-no-border-bottom"
+                       ng-model="IDCard" />
+            </div>
+
+        </div>
+
+        <div class="HA-interval"></div>
+
+        <div class="HA-register-informed no-signed"
+             ng-click="editInformed();">
+
+            <div class="HA-title">
+                <span>签署知情同意书</span>
+            </div>
+
+            <div class="HA-register-informed-content">
+                <p>请耐心阅读<span class="HA-blue" style="text-decoration: underline;">《知情同意书》</span>，如无异议请在患者签名处手写签字，表示对参见本研究可能产生的风险和受益充分了解。</p>
+            </div>
+
+        </div>
+
+        <div class="HA-interval"></div>
+
+        <div class="HA-register-code">
+
+            <div class="HA-title">
+                <span>验证码</span>
+            </div>
+
+            <div class="mui-input-row">
+                <input type="number"
+                       placeholder="请输入验证码"
+                       class="HA-input HA-no-border-bottom HA-input-code"
+                       ng-model="Code"/>
+                <button type="button"
+                        class="mui-btn mui-btn-primary"
+                        id="HA-getCode"
+                        ng-click="getVerifyCode();">
+                    获取验证码
+                </button>
+            </div>
+
+        </div>
+
+        <div class="HA-null" ng-show="false"></div>
+
+        <div class="HA-submit-div">
+
+            <button type="button"
+                    ng-click="submit();"
+                    class="mui-btn mui-btn-primary HA-submit-button"
+                    data-ripple="ripple">
+                确认提交
+            </button>
+
+        </div>
+
+    </div>
+
+    <div id="HA-informed"
+         class="HA-container"
+         ng-show="informed">
+
+        <div class="pre-container">
+
+            <div class="pre-title">
+
+                <h4>知情同意书</h4>
+
+            </div>
+
+            <div class="pre-content">
+
+                <p class="pre-no-space">方案名称：甲肝暴发流行的预测预警模型构建及应用</p>
+                <p class="pre-no-space">方案编号：20181206</p>
+                <p class="pre-no-space">方案版本号：v1.0/20181206</p>
+                <p class="pre-no-space">知情同意书版本号：v1.1/20190123</p>
+                <p class="pre-no-space">申办机构：浙江大学第一附属医院</p>
+                <p class="pre-no-space"><span style="color: #FFFFFF;">申办机构：</span>中国疾病控制预防中心病毒病预防控制所</p>
+                <p class="pre-no-space">主要项目负责人：徐福洁教授</p>
+                <p class="pre-no-space">患者姓名：<span ng-bind="Name"></span></p>
+                <p class="pre-no-space">患者电话：<span ng-bind="PhoneNo"></span></p>
+                <p></p>
+                <p class="pre-space">基于您最近的疾病诊断，我们邀请您参加一项调查。本知情同意书将向您介绍该调查的目的、步骤、获益、风险、不便或不适等，请仔细阅读后慎重做出是否参加调查的决定。您可以与家人、朋友以及您的经治医生讨论之后再做决定。</p>
+                <p class="pre-space">您参加本项目是完全自愿的。本项目已通过浙江大学附属第一医院伦理委员会及中国疾病预防控制中心病毒病预防控制所伦理委员会审查。本项目的重要信息如下：</p>
+                <p></p>
+                <p class="pre-no-space pre-bold">1、为什么进行这项调查？</p>
+                <p class="pre-space">调查目的是发现甲型肝炎在我国感染和传播最新情况，将用来预防甲型肝炎的发生。</p>
+                <p></p>
+                <p class="pre-no-space pre-bold">2、哪些人将被邀请参加这项调查？</p>
+                <p class="pre-space">来自全国六个省多个城市在2019-2020年新出现的甲型肝炎病毒感染者，1200-2000人将参加这项调查。</p>
+                <p></p>
+                <p class="pre-no-space pre-bold">3、本调查包含什么内容？</p>
+                <p class="pre-space">如果您同意参加这项调查，我们的研究员将请您回答关于您患甲型肝炎前后的卫生习惯、饮食习惯、外出情况等方面的情况。最多可能需要抽取静脉血液5ml（如果您之前的抽血样本中有足够剩余样本时则不需抽血），用于实验室的相关检测，包括甲肝病毒检测和甲肝抗体检测。</p>
+                <p></p>
+                <p class="pre-no-space pre-bold">4、本次调查将会持续多久？</p>
+                <p class="pre-space">完成本调查大约需要15分钟，此外我们在随后还可能会对您进行随访，如果您今后不愿意参加随访可以随时退出调查。</p>
+                <p></p>
+                <p class="pre-no-space pre-bold">5、参加本次调查的风险</p>
+                <p class="pre-space">从胳膊静脉抽血的风险包括短暂的不适和/或青紫。尽管可能性很小，也可能出现感染、出血、凝血或晕厥的情况。</p>
+                <p></p>
+                <p class="pre-no-space pre-bold">6、参加本次调查的益处</p>
+                <p class="pre-space">您不会因参与本调查直接受益，但是您参与本调查将能够帮助了解甲型肝炎在本地区传播和流行情况，并为国家控制甲型肝炎出一份力。 </p>
+                <p></p>
+                <p class="pre-no-space pre-bold">7、是否一定要参加并完成本次调查？</p>
+                <p class="pre-space">您是否参加这个调查完全是自愿的。如果您不愿意，可以拒绝参加，或者有权在任何阶段无需任何理由退出，这对您目前或未来的病情治疗不会有任何负面影响，如果您选择参加本项调查，我们希望您能够坚持完成全部调查过程。 </p>
+                <p></p>
+                <p class="pre-no-space pre-bold">8、我的信息会保密吗？</p>
+                <p class="pre-space">如果您决定参加本项调查，您参加调查及在调查中的个人资料均属保密。您的血液标本将以编码加以标识。所有的调查成员和调查相关方都会按要求对您的身份保密。您的档案仅供调查人员查阅。为确保调查按照规定进行，必要时，政府管理部门、学校当局或伦理委员会的成员按规定可以在项目单位查阅您的个人资料。</p>
+                <p></p>
+                <p class="pre-no-space pre-bold">9、如果我有问题，我该联系谁？</p>
+                <p class="pre-space">如果您有与访问相关的问题，可以拨打电话与项目组联系，联系电话：13157191615。如果您有与自身权利/权益相关的任何问题，或者您想反映参与本访问过程中遭遇的困难、不满和忧虑，或者想提供与本项目有关的意见和建议，请联系浙江大学附属第一医院伦理委员会/中国疾病预防控制中心病毒病预防控制所伦理委员会。</p>
+                <p></p>
+
+            </div>
+
+            <div class="pre-title">
+
+                <h4>知情同意签字-同意签字页</h4>
+
+            </div>
+
+            <div class="pre-content">
+
+                <p class="pre-no-space pre-bold">知情同意声明</p>
+                <p class="pre-space">我已被告知“甲肝暴发流行的预测预警模型构建及应用”项目的背景、目的、步骤、风险及获益情况。我有足够的时间和机会进行提问，问题的答复我很满意。我也被告知，当我有问题、想反映困难、顾虑、对研究的建议，或想获得进一步的信息，或为访问提供帮助时，应当与谁联系。我已经阅读这份知情同意书，并且同意参加本次调查。我知道我可以在调查期间的任何时候无需任何理由退出本次调查。</p>
+                <p></p>
+
+            </div>
+
+            <div class="pre-checkbox">
+
+                <div class="pre-checkbox-div">
+
+                    <div class="pre-checkbox-title">
+                        我同意参加：
+                    </div>
+                    <div class="pre-checkbox-item">
+                        <div class="mui-input-row mui-checkbox mui-left">
+                            <label class="pre-checkbox-label">问卷访问</label>
+                            <input name="checkbox"
+                                   value="问卷访问"
+                                   type="checkbox"
+                                   id="QuestionVisit"
+                                   ng-model="QuestionVisit" />
+                        </div>
+                    </div>
+                    <div class="pre-checkbox-item">
+                        <div class="mui-input-row mui-checkbox mui-left">
+                            <label class="pre-checkbox-label">血样采集</label>
+                            <input name="checkbox"
+                                   value="血样采集"
+                                   type="checkbox"
+                                   id="BloodCollection"
+                                   ng-model="BloodCollection" />
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="pre-autograph">
+
+                <div class="pre-item">
+                    <div class="pre-label">
+                        <p class="pre-no-space" style="font-size: 12px !important;">受访者签字</p>
+                    </div>
+                    <div class="pre-value"
+                         ng-click="initInterviewed();"
+                         id="pre-value-interviewed">
+                        <span ng-if="isInterviewed === false " class="f12">点击后，手写本人签名</span>
+                    </div>
+                    <div class="pre-empty"
+                         ng-click="empty(0);"></div>
+                </div>
+
+                <div class="pre-item">
+                    <div class="pre-label">
+                        <p class="pre-no-space" style="font-size: 12px !important;">受访者代理人签字</p>
+                    </div>
+                    <div class="pre-value"
+                         ng-click="initAgent();"
+                         id="pre-value-agent">
+                        <span ng-if="isAgent === false " class="f12">点击后，手写代理人签名</span>
+                    </div>
+                    <div class="pre-empty"
+                         ng-click="empty(1);"></div>
+                </div>
+
+                <div class="pre-item">
+                    <div class="pre-label">
+                        <p class="pre-no-space" style="font-size: 12px !important;">与受访者关系</p>
+                    </div>
+                    <div class="pre-value f12"
+                         id="relationship"
+                         ng-click="initPicker();">
+                        请选择
+                    </div>
+                    <div class="pre-empty"
+                         ng-click="empty(2);"></div>
+                </div>
+
+                <div class="pre-item">
+                    <div class="pre-label">
+                        <p class="pre-no-space">签署时间</p>
+                    </div>
+                    <div class="pre-value pre-time"
+                         ng-bind="nowTime"></div>
+                </div>
+
+                <div class="pre-item">
+                    <p style="color: red;">注：如果患者签字不便，可由亲属代替签名并注明关系</p>
+                </div>
+
+                <div class="pre-item">
+                    <p class="pre-tip"
+                       ng-click="showTip();">查看范例></p>
+                </div>
+
+            </div>
+
+            <div class="pre-null"></div>
+
+            <div class="pre-down"
+                 ng-click="toBottom();"></div>
+
+            <div class="pre-button">
+
+                <button type="button"
+                        ng-click="backIndex();"
+                        ng-show="false"
+                        class="mui-btn mui-btn-primary HA-pre-button"
+                        data-ripple="ripple">
+                    返回
+                </button>
+
+                <button type="button"
+                        ng-click="submitBackIndex();"
+                        class="mui-btn mui-btn-primary HA-pre-button"
+                        data-ripple="ripple"
+                        style="width: 80%;">
+                    确定
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div id="HA-autograph"
+         class="HA-container"
+         ng-show="autograph"
+         style="margin: 10px;">
+
+        <div class="container"
+             id="HA-interviewed-container"></div>
+
+        <script type="text/html"
+                id="temp-interviewed">
+            <span>受访者签字</span>
+            <span class="clear-canvas"
+                  id="HA-interviewed-clear">
+               清屏
+            </span>
+
+            <span class="autograph-back clear-canvas"
+                  id="HA-interviewed-back">
+               取消
+            </span>
+
+            <span class="save-canvas-to-img clear-canvas"
+                  id="HA-interviewed-submit">
+               确定
+            </span>
+        </script>
+
+    </div>
+
+    <div id="HA-agent"
+         class="HA-container"
+         ng-show="agent">
+
+        <div class="container"
+             id="HA-agent-container"></div>
+
+        <script type="text/html"
+                id="temp-agent">
+            <span>代理人签字</span>
+            <span class="clear-canvas"
+                  id="HA-agent-clear">
+               清屏
+            </span>
+
+            <span class="autograph-back clear-canvas"
+                  id="HA-agent-back">
+               取消
+            </span>
+
+            <span class="save-canvas-to-img clear-canvas"
+                  id="HA-agent-submit">
+               确定
+            </span>
+        </script>
+
+    </div>
+
+</div>
+
+<script src="../resources/js/app.js"></script>
+<script src="resources/js/register.js"></script>
+
+</body>
+
+</html>

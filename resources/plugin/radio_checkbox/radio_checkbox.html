@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<!-- saved from url=(0057)http://www.jq22.com/demo/jqueryRadioCheckbox201801302153/ -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<script src="./radio_checkbox_files/jquery-1.10.2.js.下载"></script><script src="./radio_checkbox_files/jquery.min.js.下载"></script>
+<script type="text/javascript" src="./radio_checkbox_files/cr.js.下载"></script>
+<link rel="stylesheet" type="text/css" href="./radio_checkbox_files/index.css">
+<title>radio/checkbox</title>
+</head>
+<body style="background: rgb(34, 34, 34); color: white;">
+<br>
+<div style="padding-left: 100px;">
+
+<h4>radio</h4>
+<div id="radio" class="sf-checked" type="radio">
+<div class="sf-checked-item" value="1"><span class="sf-radio-icon"></span><label>启动</label></div>
+<div class="sf-checked-item" value="2" checked="checked"><span class="sf-radio-icon sf-radio-selected"></span><label>禁用</label></div>
+</div>
+<br>
+<br>
+<br>
+
+<h4>checkbox</h4>
+<div id="checked1" class="sf-checked" name="state" type="checkbox">
+<div class="sf-checked-item" value="1" checked="checked"><span class="sf-checkbox-icon sf-checkbox-selected"></span><label>第一个</label></div>
+<div class="sf-checked-item" value="2" checked="checked"><span class="sf-checkbox-icon sf-checkbox-selected"></span><label>第二个</label></div>
+<div class="sf-checked-item" value="3"><span class="sf-checkbox-icon"></span><label>第三个</label></div>
+<div class="sf-checked-item" value="4" checked="checked"><span class="sf-checkbox-icon sf-checkbox-selected"></span><label>第四个</label></div>
+</div>
+
+<div id="checked2" class="sf-checked" name="state" type="checkbox">
+</div>
+<br>
+<br>
+<br>
+<p>将radio状态置反checkbox多选中第二个</p>
+<div id="changebtn" style=";cursor:pointer;width: 60px;height: 40px;text-align: center;line-height: 40px;background-color: cornflowerblue;">改变</div>
+<br>
+<div id="getbtn" style=";cursor:pointer;width: 60px;height: 40px;text-align: center;line-height: 40px;background-color: cornflowerblue;">取值</div>
+<br>
+<div class="lable"></div>
+</div>
+
+<script type="text/javascript">
+		$(function() {
+
+			$('#radio').sfcheckbox();
+			$('#checked1').sfcheckbox();
+			$('#checked2').sfcheckbox();
+
+		})
+		//改变
+		$('#changebtn').click(function() {
+			$('#radio').sfcheckbox('setVal','2');
+			$('#checked1').sfcheckbox('setVal','2');
+		})
+		//取值
+		$('#getbtn').click(function() {
+			var r = 'radio值：'+ $('#radio').sfcheckbox('getVal')+'<br/>'
+			
+			var c = $('#checked1').sfcheckbox('getVal');
+			var h = 'checkedbox：'+JSON.stringify(c)
+			
+			$('.lable').html(r+h)
+
+		})
+	</script>
+</body></html>

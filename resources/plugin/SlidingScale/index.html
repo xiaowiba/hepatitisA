@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<!-- saved from url=(0048)http://www.jq22.com/demo/jqueryYbkc201806262343/ -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <title>移动端滑动标尺</title>
+    <style type="text/css">
+        *{ padding: 0;margin: 0; }
+        a {text-decoration: none;}
+        ul,ol {list-style:none;}
+        .box {height:50px;position:relative;width:75%;margin:0 auto;}
+        .wrap{min-width: 320px;max-width:768px;margin:0 auto;overflow:hidden;position:relative;}
+        .wrapper {position:relative;height:49px;line-height:50px;width:100%;overflow: hidden;margin:0 auto;border:1px solid #ccc;border-radius:25px;}
+        .wrapper .scroller {position:absolute;padding:0 48% 0 50%;}
+        .wrapper .scroller li {float: left;width:50px;height:13px;line-height:13px;text-align: center;margin: 0 20px; padding:30px 0 10px;position:relative;}
+        /*	.wrapper .scroller li:first-child {width:230px;}
+            .wrapper .scroller li:last-child {width:210px;}*/
+        .wrapper .scroller li span{display:block;border-left:1px solid #ccc;/*border-right:1px solid #ccc;*/width:100%;height:100%;}
+        .wrapper .scroller li span i {display:inline-block;font-size:12px; font-style:normal;position:absolute;top:7px;left:-10px;}
+        .pillar {display:inline-block;width:6px;height:100%;border-radius:10px;background:red;position:absolute;z-index:2;left:50%;margin-left:-3px;}
+        h3{text-align: center;line-height: 60px}
+    </style>
+</head>
+<body style="">
+<h3 id="numberID">不限</h3>
+<div class="box">
+    <span class="pillar"></span>
+    <div class="wrapper" id="wrapper1">
+        <div class="scroller" style="width: 551px;
+        transition-timing-function: cubic-bezier(0.1, 0.57, 0.1, 1);
+        transition-duration: 0ms; transform: translate(0px, 0px) translateZ(0px);">
+            <ul class="clearfix">
+                <li class="cur" style="margin-left: 0px; margin-right: 0px;"><span><i>0</i></span></li>
+                <li style="margin-left: 0px; margin-right: 0px;"><span><i>1</i></span></li>
+                <li style="margin-left: 0px; margin-right: 0px;"><span><i>2</i></span></li>
+                <li style="margin-left: 0px; margin-right: 0px;"><span><i>3</i></span></li>
+                <li style="margin-left: 0px; margin-right: 0px;"><span><i>4</i></span></li>
+                <li style="margin-left: 0px; margin-right: 0px;"><span><i>5</i></span></li>
+                <li style="margin-left: 0px; margin-right: 0px;"><span><i>6</i></span></li>
+                <li style="margin-left: 0px; margin-right: 0px;"><span><i>7</i></span></li>
+                <li style="margin-left: 0px; margin-right: 0px;"><span><i>8</i></span></li>
+                <li style="margin-left: 0px; margin-right: 0px;"><span><i>9</i></span></li>
+                <li style="margin-left: 0px; margin-right: 0px;"><span><i>10</i></span></li>
+            </ul>
+        </div>
+    </div>
+</div>
+<script src="jquery-1.10.2.js"></script>
+<script src="jquery.min.js"></script>
+<script src="iscroll.js"></script>
+<script src="navbarscroll.js"></script>
+<script type="text/javascript">
+    $(function(){
+        //demo示例一到四 通过lass调取，一句可以搞定，用于页面中可能有多个导航的情况
+        // $('.wrapper').navbarscroll();
+
+        //demo示例五 通过id调取
+        // $('.wrapper').navbarscroll({
+        // 	defaultSelect:6,
+        // 	endClickScroll:function(obj){
+        // 		console.log(obj.text())
+        // 	}
+        // });
+
+        //demo示例六 通过id调取
+        $('.wrapper').navbarscroll({
+            duibiScreenWidth:0.1, //单位以rem为准，默认为0.4rem
+            scrollerWidth:1, //单位以px为准，默认为3,[仅用于特殊情况：外层宽度因为小数点造成的不精准情况]
+            fingerClick:0, //目标第0或1个选项触发,必须每一项长度一致，方可用此项
+            endClickScroll:function(obj){
+                console.log(obj.text());
+            }
+        });
+    });
+</script>
+
+</body>
+</html>
